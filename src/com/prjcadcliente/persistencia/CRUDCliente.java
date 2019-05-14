@@ -97,7 +97,35 @@ import com.prjcadcliente.dominio.Cliente;
 				return msg;
         	  }
         	  public String deletar(Cliente cliente) {
-        		  return null;
+ String msg = "";
+        		  
+        		  //Criação dos objetos para a conexao com o banco de dados
+        		  try {
+        			  Class.forName("com.mysql.cj.jdbc.Drive").newInstance();
+        			  con = DriverManager.getConnection("jdbc:mysql://localhost:3307/clientedb","root","");
+        			  
+        			  String Consulta = "DELETE FROM tbcliente WHERE id=?";
+        			  
+        			  pst = con.prepareStatement(Consulta);
+        			  
+        			 pst.setInt(1, cliente.getId());
+        			  int r = pst.executeUpdate();
+        		
+        			  if(r > 0)
+        				  msg = "Cadastro realizado com sucesso!";
+        			  else
+        				  msg = "Não foi possível cadastrar!";
+        			  }  
+        		  catch(SQLException ex) {
+        			  msg = "Erro ao tenar deletar:"+ex.getMessage();
+        		  }
+        		  catch(Exception e) {
+        			  msg = "Erro inesperado:"+e.getMessage();
+        			  }
+        		  	finally {
+        		  		try {con.close();}catch(Exception e) {e.printStackTrace();}
+        		  	}
+				return msg;
         	  }
         	  public List<Cliente> PesquisarPorNome(String nome) {
         		  return null;

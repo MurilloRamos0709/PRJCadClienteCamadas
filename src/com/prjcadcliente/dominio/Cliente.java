@@ -1,22 +1,23 @@
 package com.prjcadcliente.dominio;
 
 public class Cliente {
-
-	private static int id;
+	private int id;
 	private String nome;
 	private String email;
 	private String telefone;
 	private int idade;
 	public Cliente() {
+		super();
 	}
 	public Cliente(int id, String nome, String email, String telefone, int idade) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
 		this.idade = idade;
 	}
-	public static int getId() {
+	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
@@ -46,5 +47,4 @@ public class Cliente {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-	
 }
